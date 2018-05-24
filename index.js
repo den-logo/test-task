@@ -10,17 +10,19 @@
 
 // ES5 with functions
 function Animal(name) {
-    this.name = name;
-    this.getName = function() {
-      return this.name;
-  }
+  this.name = name;
+  this.getName = function() {
+  
+  return this.name;
+}
   
 };
-function Dog(name){
-        Animal.call(this, name);
-        this.bark = function() {
-        return 'Dog ' + this.name + ' is barking';
-    }
+function Dog(name) {
+  Animal.call(this, name);
+  
+  this.bark = function() {
+    return 'Dog ' + this.name + ' is barking';
+  }
 }
 
 // ES5 with prototypes
@@ -45,15 +47,15 @@ Dog.prototype.bark = function() {
 
 // ES6
 class Animal {
-    constructor(name){
-      this.name = name
+  constructor(name) {
+    this.name = name
   }
   getName() {
-      return this.name;
+    return this.name;
   }
 }
 class Dog extends Animal {
   bark() {
-      return `Dog ${this.name} is barking`;
+    return `Dog ${this.name} is barking`;
   }
 }
