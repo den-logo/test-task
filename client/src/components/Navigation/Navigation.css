@@ -1,0 +1,19 @@
+.import-from-txt-label {
+  color: #ffffff;
+}
+
+@media(min-width: 768px) {
+  .navigation .navbar-right {
+    padding: 0;
+  }
+  .navigation .navbar-left {
+    padding-right: 0;
+  }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px)  {
+  .navbar .container {
+    margin: 0 !important;
+    width: auto;
+  }
+}
