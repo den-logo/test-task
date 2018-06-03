@@ -31,7 +31,7 @@ After cloning, open your console and follow these instructions:
 
 ## About structure of project
 
-**CMDb** has been made using ReactJS for client side and NodeJS for backend. Client side of project has Redux for saving state of mostly everything you actually see, It consist of ALL films that you have, filter and search options. All searching and filtering stuff, txt file reading ( for importing films from file ) and adding film through modal window is getting handled by client side. Backend is responsible only for saving films to database and returning films if needed.
+**CMDb** has been made using ReactJS for client side and NodeJS for backend. Client side of project has Redux for saving state of mostly everything you actually see, It consists of ALL films that you have, filter and search options. All searching and filtering stuff, txt file reading ( for importing films from file ) and adding film through modal window is getting handled by client side. Backend is responsible only for saving films to database and returning films if needed.
 
 ## TODO / Refactoring things
 
