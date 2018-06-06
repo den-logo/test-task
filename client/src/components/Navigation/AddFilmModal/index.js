@@ -5,6 +5,7 @@ import {
   Form, FormControl, FormGroup, ControlLabel,
   Radio 
 } from 'react-bootstrap';
+import { addFilm } from '../../../actions/films';
 import './AddFilmModal.css';
 
 const initialState = {
@@ -136,15 +137,6 @@ export default connect(
     films: state.films
   }),
   dispatch => ({
-    onAddFilm: (id, film) => {
-      const payload = {
-        id,
-        title: film.title,
-        release: film.release,
-        radio: film.radio,
-        stars: film.stars
-      };
-      dispatch({ type: 'ADD_FILM', payload });
-    }
+    onAddFilm: (id, film) => dispatch(addFilm(id, film))
   })
 )(AddFilmModal);

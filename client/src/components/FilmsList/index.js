@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import Film from './Film';
 
 class FilmList extends React.Component {
-
+  
   render() {
     return (
       <Row style={{ margin: 0, display: 'flex', flexFlow: 'wrap' }}>
@@ -48,7 +48,7 @@ const mapStateToProps = state => {
                 return 0;
               }
             })
-          }
+        }
       case 'asc':
         return {
           films: state.films

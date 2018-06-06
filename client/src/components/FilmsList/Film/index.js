@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Panel, Badge, Button, Glyphicon } from 'react-bootstrap';
+import { deleteFilm } from '../../../actions/films';
 
 class Film extends React.Component {
   handleClick() {
@@ -42,8 +43,6 @@ export default connect(
     films: state.films
   }),
   dispatch => ({
-    onDelete: (id) => {
-      dispatch({type: 'DELETE_FILM', payload: id });
-    }
+    onDelete: id => dispatch(deleteFilm(id))
   })
 )(Film);

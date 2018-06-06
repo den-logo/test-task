@@ -7,6 +7,7 @@ import {
   ControlLabel, Glyphicon, ButtonGroup 
 } from 'react-bootstrap';
 import AddBrandModal from './AddFilmModal'; 
+import { addFilm } from '../../actions/films';
 import './Navigation.css';
 
 class Navigation extends React.Component {
@@ -148,15 +149,6 @@ export default connect(
     onSearch: (name, option) => {
       dispatch({ type: 'FIND_FILM', payload: {name, option} })
     },
-    onAddFilm: (id, film) => {
-      const payload = {
-        id,
-        title: film.title,
-        release: film.release,
-        radio: film.radio,
-        stars: film.stars
-      };
-      dispatch({ type: 'ADD_FILM', payload });
-    }
+    onAddFilm: (id, film) => dispatch(addFilm(id, film))
   })
 )(Navigation);
