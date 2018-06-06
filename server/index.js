@@ -39,16 +39,16 @@ app.post('/', function(req, res) {
       con.query(sql, function (err, result) {
         if (err) throw err;
         console.log(`film with id ${elem.id} has been added to db!`);
+        res.end();
       });
     }); 
-    res.send();
   } else {
     var sql = `INSERT INTO ${table} VALUES (${req.body.film.id}, "${req.body.film.title}", "${req.body.film.release}", "${req.body.film.radio}", "${req.body.film.stars}")`;
     con.query(sql, function (err, result) {
       if (err) throw err;
       console.log(`film with id ${req.body.film.id} has been added to db!`);
+      res.end();
     });
-    res.send();
   }
 });
 

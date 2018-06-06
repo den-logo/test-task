@@ -1,3 +1,5 @@
+import api from '../apiSingleton';
+
 export const ADD_FILM = 'ADD_FILM';
 
 export const addFilm = (id, film) => dispatch => {
@@ -9,15 +11,13 @@ export const addFilm = (id, film) => dispatch => {
     stars: film.stars
   };
   // add to db
-  fetch('http://localhost:3001/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ film: payload })
-  }).then(
-    dispatch({ type: ADD_FILM, payload })
-  );
+  api.films.add({ 'film': payload })
+    .then(
+      dispatch({ type: ADD_FILM, payload })
+    )
+    .catch(err => {
+      console.log(err);
+    });
 }
 
 /** 
@@ -25,25 +25,19 @@ export const addFilm = (id, film) => dispatch => {
   * but doesn't work with UPLOAD_FILMS action (FilmList component won't re-render) 
   * that triggers onle one time with payload that contains all films from db
 */ 
-export const UPLOAD_FILMS = 'UPLOAD_FILMS';
+// export const UPLOAD_FILMS = 'UPLOAD_FILMS';
+
 export const uploadFilms = () => (dispatch, getState) => {
-  let films = [];
-  fetch('http://localhost:3001/')
-  .then(function(response) {
-    return response.json();
-   })
+  // let films = [];
+  api.films.list()
     .then(resp => {
-      if (!resp.length) return;
       resp.forEach(elem => {
         let release = elem.release_year;
         delete elem.release_year;
         // films.push({ ...elem, release });
-        dispatch({ type: ADD_FILM, payload:  { ...elem, release }})
+        dispatch({ type: ADD_FILM, payload:  { ...elem, release } })
       }); 
     })
-    .then(
-      // dispatch({ type: UPLOAD_FILMS, payload: films })
-    )
     .catch(err => {
       console.log(err)
     })  
@@ -61,15 +55,13 @@ export const deleteFilm = id => (dispatch, getState) => {
     }
   }
   // update db 
-  fetch('http://localhost:3001/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({films, update: true})
-  }).then(
-    dispatch({ type: DELETE_FILM, payload: films })
-  );
+  api.films.add({ films, update: true })
+    .then(
+      dispatch({ type: DELETE_FILM, payload: films })
+    )
+    .catch(err => {
+      console.log(err)
+    });
 }
 
 export const FIND_FILM = 'FIND_FILM';
