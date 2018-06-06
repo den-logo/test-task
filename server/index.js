@@ -22,14 +22,14 @@ con.connect(function(err) {
   console.log(`Connected to ${db}!`);
 });
 
-app.get('/', function (req, res) {
+app.get('/films', function (req, res) {
   con.query(`SELECT * FROM ${table}`, function (err, result, fields) {
     if (err) throw err;
     res.send(result);
   });
 });
 
-app.post('/', function(req, res) {
+app.post('/films', function(req, res) {
   if(req.body.update) {
     con.query(`TRUNCATE TABLE ${table}`, function (err, result, fields) {
       if (err) throw err;
